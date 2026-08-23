@@ -1,4 +1,4 @@
-# University Project Repos
+# University Project Demos
 
 Demonstrations of knowledge and skills relating to completed project and course studies at multiple universities.
 
