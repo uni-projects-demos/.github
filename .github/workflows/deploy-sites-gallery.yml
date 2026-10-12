@@ -1,0 +1,31 @@
+name: deploy-sites-gallery
+
+on:
+  schedule:
+    - cron: "0 2 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  gallery:
+    runs-on: ubuntu-latest
+
+    environment:
+      name: github-pages
+      url: ${{ steps.gallery.outputs.page-url }}
+
+    steps:
+      - name: Deploy
+        id: gallery
+        uses: profile-icons/github-sites-gallery@v1
+        with:
+          gh_usernames: ${{ secrets.GH_USERNAMES }}  # optional, eg: 'username,orgA,orgB,...'
+          gh_pat: ${{ secrets.GH_PAT }}  # optional: Personal Access Token (PAT)
