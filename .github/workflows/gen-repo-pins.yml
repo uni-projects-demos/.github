@@ -1,0 +1,29 @@
+name: gen-repo-pins
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-pins:
+    runs-on: ubuntu-26.04
+
+    steps:
+      - uses: profile-icons/github-repo-pins@main
+        with:
+          gh_api_token: ${{ secrets.GH_API_TOKEN || secrets.GITHUB_TOKEN }}  # optional, use default for public repos; PAT for private, org repos
+          gh_username: ${{ secrets.GH_USERNAME || github.repository_owner }}  # optional, defaults to repo owner
+          theme: ${{ secrets.THEME }}  # optional
+          background_image: ${{ secrets.BG_IMG }}  # optional
+          num_repo_pins: ${{ secrets.NUM_REPO_PINS }}  # optional
+          repo_pin_order: ${{ secrets.REPO_PIN_ORDER }}  # optional
+          repo_names_exclusive: ${{ secrets.REPO_NAMES_EXCLUSIVE }}  # optional
+          is_exclude_repos_owned: ${{ secrets.IS_EXCLUDE_REPOS_OWNED }}  # optional
+          is_exclude_repos_contributed: ${{ secrets.IS_EXCLUDE_REPOS_CONTRIBUTED }}  # optional
+          is_contribution_stats: ${{ secrets.IS_CONTRIBUTION_STATS }}  # optional
+          translations: ${{ secrets.TRANSLATE }}  # optional 
+          hf_token: ${{ secrets.HF_TOKEN }}  # optional
