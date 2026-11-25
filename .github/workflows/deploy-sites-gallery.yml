@@ -16,7 +16,7 @@ concurrency:
 
 jobs:
   gallery:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
 
     environment:
       name: github-pages
@@ -27,5 +27,4 @@ jobs:
         id: gallery
         uses: profile-icons/github-sites-gallery@main
         with:
-          gh_usernames: ${{ secrets.GH_USERNAMES }}  # optional, eg: 'username,orgA,orgB,...'
-          gh_pat: ${{ secrets.GH_PAT }}  # optional: Personal Access Token (PAT) - for org/private repo, traffic auth..
+          gh_pat: ${{ secrets.GH_PAT }} # optional: Personal Access Token (PAT)
